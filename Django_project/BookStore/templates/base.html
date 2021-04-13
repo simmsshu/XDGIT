@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to C语言中文网 {% endblock title %}</title>
+</head>
+<body>
+<!--区域1默认区域不可以被子模板修改-->
+<p>尊敬的用户您好：</p>
+<hr>
+<!--区域2可以被子模板重写-->
+{% block content %}
+<p>这是主体内容可以被子模板重写</p>
+{% endblock content %}
+<hr>
+<!--区域3可以被子模板重写-->
+{% block footer %}
+<p>这是结尾的内容也可以被重写</p>
+{% endblock footer %}
+</body>
+</html>

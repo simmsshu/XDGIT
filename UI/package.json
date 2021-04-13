@@ -1,0 +1,16 @@
+{
+  "name": "etekcityTool",
+  "version": "1.0.0",
+  "dependencies": {
+    
+  },
+  "left_tree_list": {
+    "7A日志": {},
+    "VDMP日志": {},
+    "AppServer日志": {},
+    "Thirdparty日志": {},
+    "数据库查询":{"配网日志":{"trace": "","file": "configLog","class": "Window"}},
+    "综合日志": {"ELK查询工具":{"trace": "","file": "config","class": "defineWindow"}},
+    "其他":{}
+  }
+}

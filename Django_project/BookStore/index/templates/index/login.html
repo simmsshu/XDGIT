@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Login</title>
+ <link rel="stylesheet" type="text/css" href="/static/CSS/login.css"/>
+</head>
+<body>
+ <h1>Login</h1>
+ <form method="post" action="/index/login/">
+  {% csrf_token %}
+ <input type="text" required="required" placeholder="用户名" name="username" value="{{ username }}"></input>
+ <input type="password" required="required" placeholder="密码" name="password_1" value="{{ password_1 }}"></input>
+ <input type="password" required="required" placeholder="密码" name="password_2" value="{{ password_2 }}"></input>
+ <button class="but" type="submit">登录</button>
+ </form>
+</body>
+</html>

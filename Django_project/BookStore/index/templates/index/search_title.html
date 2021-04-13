@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍搜索页面</title>
+</head>
+<body>
+{%  if errors  %}
+<ul>
+    {% for error in errors %}
+    <li>
+        {{ error }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="/index/search_title/" method="get">
+    <input type="text" name="title">
+    <input type="submit" value="search_title">
+</form>
+</body>
+</html>

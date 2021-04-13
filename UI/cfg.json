@@ -1,0 +1,1320 @@
+{
+     "7A开关查询": {
+          "index": "cloud-wifioutlet7a",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "minimum_should_match": 1,
+                                        "should": [
+                                             {
+                                                  "match": {
+                                                       "url": {
+                                                            "query": "on off"
+                                                       }
+                                                  }
+                                             },
+                                             {
+                                                  "bool": {
+                                                       "must": [
+                                                            {
+                                                                 "exists": {
+                                                                      "field": "cid"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "M": "get device response to other"
+                                                                 }
+                                                            }
+                                                       ]
+                                                  }
+                                             }
+                                        ]
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "accountId": "accountId"
+               },
+               {
+                    "日志来源": {
+                         "mainkey": "url",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "/v1/(.*?)/"
+                    }
+               },
+               {
+                    "请求状态": {
+                         "mainkey": "url",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "/status/(.*?)$"
+                    }
+               },
+               {
+                    "M": "M"
+               },
+               {
+                    "traceId": "traceId"
+               }
+          ],
+          "columnwidths": [
+               71,
+               99,
+               70,
+               206,
+               266,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "7A过流与trigger查询": {
+          "index": "cloud-wifioutlet7a",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "minimum_should_match": 1,
+                                        "should": [
+                                             {
+                                                  "match_phrase": {
+                                                       "msg": "trigger"
+                                                  }
+                                             },
+                                             {
+                                                  "match_phrase": {
+                                                       "msg": "\"otp\":\"on\""
+                                                  }
+                                             }
+                                        ],
+                                        "must": {
+                                             "match_phrase": {
+                                                  "M": "get device msg"
+                                             }
+                                        }
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "M": "M"
+               },
+               {
+                    "msg": "msg"
+               },
+               {
+                    "cid": "cid"
+               },
+               {
+                    "accountId": "accountId"
+               }
+          ],
+          "columnwidths": [
+               100,
+               342,
+               260,
+               75,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "ByPassV2GetScshedule": {
+          "index": "cloud-appserver-new",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "must": [
+                                             {
+                                                  "match_phrase": {
+                                                       "request.context.method": "bypassV2"
+                                                  }
+                                             },
+                                             {
+                                                  "match": {
+                                                       "request.data": "getSchedule upschedule"
+                                                  }
+                                             }
+                                        ]
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "accountID": "request.context.accountID"
+               },
+               {
+                    "phoneOS": "request.context.phoneOS"
+               },
+               {
+                    "phoneBrand": "request.context.phoneBrand"
+               },
+               {
+                    "timeZone": "request.context.timeZone"
+               },
+               {
+                    "request.data.cid": "request.data.cid"
+               },
+               {
+                    "configModule": "request.data.configModule"
+               },
+               {
+                    "total": "response.result.result.total"
+               },
+               {
+                    "schid": "response.result.result.schedules.id"
+               },
+               {
+                    "startTs": "response.result.result.schedules.startTs"
+               },
+               {
+                    "sunrise": "response.result.result.schedules.sunrise"
+               },
+               {
+                    "enabled": "response.result.result.schedules.enabled"
+               },
+               {
+                    "repeat": "response.result.result.schedules.repeat"
+               },
+               {
+                    "startAct": "response.result.result.schedules.startAct"
+               }
+          ],
+          "columnwidths": [
+               67,
+               85,
+               100,
+               116,
+               155,
+               123,
+               34,
+               34,
+               84,
+               46,
+               40,
+               34,
+               815,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "VDMP_Schedule操作": {
+          "index": "cloud-mqtt",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "must": [
+                                             {
+                                                  "match_phrase": {
+                                                       "message": {
+                                                            "query": "operation"
+                                                       }
+                                                  }
+                                             },
+                                             {
+                                                  "bool": {
+                                                       "minimum_should_match": 1,
+                                                       "should": [
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "message": "add"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "message": "del"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "message": "start"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "message": "end"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "message": "play"
+                                                                 }
+                                                            }
+                                                       ]
+                                                  }
+                                             }
+                                        ]
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "cid": [
+                         "message.message.request.data.cid",
+                         "message.message.request.cid"
+                    ]
+               },
+               {
+                    "operat": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "\\\\\\\"operation\\\\\\\":\\\\\\\"(.*?)\\\\\\\""
+                    }
+               },
+               {
+                    "type": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "(re.compile(r\"schedule[0-9]{0,2}\"),re.compile(r\"timer[0-9]{0,2}\"))"
+                    }
+               },
+               {
+                    "status": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "\\\\\\\"status\\\\\\\":\\\\\\\"(.*?)\\\\\\\""
+                    }
+               },
+               {
+                    "startTs": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "\\\\\\\"startTs\\\\\\\":([0-9]+)"
+                    }
+               },
+               {
+                    "startAct": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "\\\\\\\"startAct\\\\\\\":\\\\\\\"(.*?)\\\\\\\""
+                    }
+               },
+               {
+                    "endTs": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "\\\\\\\"endTs\\\\\\\":([0-9]+)"
+                    }
+               },
+               {
+                    "endAct": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": ",\\\\\\\"endAct\\\\\\\":\\\\\\\"(.*?)\\\\\\\""
+                    }
+               },
+               {
+                    "repeat": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "\\\\\\\"repeat\\\\\\\":([0-9]+)"
+                    }
+               },
+               {
+                    "event": {
+                         "mainkey": "message",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "\\\\\\\"event\\\\\\\":\\\\\\\"(.*?)\\\\\\\""
+                    }
+               }
+          ],
+          "columnwidths": [
+               239,
+               47,
+               68,
+               52,
+               84,
+               57,
+               79,
+               46,
+               47,
+               56,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "APP获取设备列表": {
+          "index": "cloud-appserver-new",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "match_phrase": {
+                                        "request.context.method": {
+                                             "query": "devices"
+                                        }
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "accountID": "request.context.accountID"
+               },
+               {
+                    "appVersion": "request.context.appVersion"
+               },
+               {
+                    "Language": "request.context.acceptLanguage"
+               },
+               {
+                    "pBrand": "request.context.phoneBrand"
+               },
+               {
+                    "timeZone": "request.context.timeZone"
+               },
+               {
+                    "total": "response.result.total"
+               },
+               {
+                    "cid": "response.result.list.cid"
+               },
+               {
+                    "deviceName": "response.result.list.deviceName"
+               },
+               {
+                    "configModule": "response.result.list.configModule"
+               },
+               {
+                    "connectStatus": "response.result.list.connectionStatus"
+               },
+               {
+                    "isOwner": "response.result.list.isOwner"
+               },
+               {
+                    "macID": "response.result.list.macID"
+               },
+               {
+                    "uuid": "response.result.list.uuid"
+               },
+               {
+                    "FWVersion": "response.result.list.currentFirmVersion"
+               },
+               {
+                    "FirstSetupTime": "response.result.list.deviceFirstSetupTime"
+               }
+          ],
+          "columnwidths": [
+               66,
+               100,
+               50,
+               133,
+               129,
+               33,
+               269,
+               128,
+               100,
+               86,
+               55,
+               130,
+               267,
+               70,
+               175,
+               100,
+               100,
+               100
+          ]
+     },
+     "APPserver_ESW10_schedule操作": {
+          "index": "cloud-appserver-new",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "must": [
+                                             {
+                                                  "match_phrase": {
+                                                       "request.context.method": {
+                                                            "query": "bypassv2"
+                                                       }
+                                                  }
+                                             },
+                                             {
+                                                  "bool": {
+                                                       "should": [
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "request.data": "delSchedule"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "request.data": "upSchedule"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "request.data": "getSchedule"
+                                                                 }
+                                                            },
+                                                            {
+                                                                 "match_phrase": {
+                                                                      "request.data": "addSchedule"
+                                                                 }
+                                                            }
+                                                       ],
+                                                       "minimum_should_match": 1
+                                                  }
+                                             }
+                                        ]
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "accountID": "request.context.accountID"
+               },
+               {
+                    "cid": "request.data.cid"
+               },
+               {
+                    "appVersion": "request.context.appVersion"
+               },
+               {
+                    "phoneOS": "request.context.phoneOS"
+               },
+               {
+                    "timeZone": "request.context.timeZone"
+               },
+               {
+                    "method": "request.data.payload.method"
+               },
+               {
+                    "id": "request.data.payload.data.id"
+               },
+               {
+                    "enabled": "request.data.payload.data.enabled"
+               },
+               {
+                    "repeat": "request.data.payload.data.repeat"
+               },
+               {
+                    "startTs": "request.data.payload.data.startTs"
+               },
+               {
+                    "act": "request.data.payload.data.startAct.act"
+               },
+               {
+                    "actnum": "request.data.payload.data.startAct.num"
+               },
+               {
+                    "acttype": "request.data.payload.data.startAct.type"
+               },
+               {
+                    "sunrise": "request.data.payload.data.sunrise"
+               },
+               {
+                    "latitude": "request.data.payload.data.latitude"
+               },
+               {
+                    "longitude": "request.data.payload.data.longitude"
+               },
+               {
+                    "source": "request.data.payload.source"
+               },
+               {
+                    "rspcode": "response.code"
+               },
+               {
+                    "response.msg": "response.msg"
+               }
+          ],
+          "columnwidths": [
+               70,
+               259,
+               80,
+               62,
+               69,
+               83,
+               37,
+               58,
+               50,
+               81,
+               65,
+               42,
+               57,
+               51,
+               64,
+               72,
+               53,
+               72,
+               98,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "MQTT_initstate": {
+          "index": "mqtt-vdmp",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "must": [
+                                             {
+                                                  "query_string": {
+                                                       "query": "INITSTATE"
+                                                  }
+                                             }
+                                        ]
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "deviceId": "context.deviceId"
+               },
+               {
+                    "initstate": "request.payload.state.reported.initState"
+               },
+               {
+                    "routerMac": "request.payload.state.reported.routerMac"
+               },
+               {
+                    "rssi": "request.payload.state.reported.rssi"
+               },
+               {
+                    "retry": "request.payload.state.reported.retry"
+               },
+               {
+                    "wifiName": "request.payload.state.reported.wifiName"
+               },
+               {
+                    "restore": "request.payload.state.reported.restore"
+               },
+               {
+                    "mac": "request.payload.state.reported.mac"
+               },
+               {
+                    "mqttDisTs": "request.payload.state.reported.mqttDisTs"
+               },
+               {
+                    "mqttRecTs": "request.payload.state.reported.mqttRecTs"
+               },
+               {
+                    "wifiDisTs": "request.payload.state.reported.wifiDisTs"
+               },
+               {
+                    "wifiRecTs": "request.payload.state.reported.wifiRecTs"
+               },
+               {
+                    "HOSTNAME": "HOSTNAME"
+               }
+          ],
+          "columnwidths": [
+               246,
+               70,
+               116,
+               37,
+               80,
+               147,
+               52,
+               126,
+               111,
+               129,
+               121,
+               117,
+               280,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "空气炸锅alexa日志": {
+          "index": "thirdpartygatewayin-alexa",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "must": []
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "accountId": "request.accountId"
+               },
+               {
+                    "alexaRegion": "request.alexaRegion"
+               },
+               {
+                    "header.namespace": "request.directive.header.namespace"
+               },
+               {
+                    "header.name": "request.directive.header.name"
+               },
+               {
+                    "CID": "request.directive.endpoint.endpointId"
+               },
+               {
+                    "请求参数": "request.directive.payload"
+               },
+               {
+                    "烹饪时长": "request.directive.payload.cookTime"
+               },
+               {
+                    "温度单位": [
+                         "request.directive.payload.cookingTemperatureSetting.scale",
+                         "request.directive.payload.targetCookingTemperature.scale"
+                    ]
+               },
+               {
+                    "目标温度": [
+                         "request.directive.payload.cookingTemperatureSetting.value",
+                         "request.directive.payload.targetCookingTemperature.value"
+                    ]
+               },
+               {
+                    "报错消息": "response.event.payload.message"
+               },
+               {
+                    "description": "response.event.payload.endpoints.description"
+               },
+               {
+                    "discoveryCID": "response.event.payload.endpoints.endpointId"
+               }
+          ],
+          "columnwidths": [
+               70,
+               100,
+               186,
+               100,
+               262,
+               60,
+               58,
+               91,
+               63,
+               90,
+               250,
+               316,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "3way_bypassV1开关查询": {
+          "index": "mqtt-bypassv1",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "minimum_should_match": 1,
+                                        "should": [
+                                             {
+                                                  "match": {
+                                                       "request.payload": "on off"
+                                                  }
+                                             },
+                                             {
+                                                  "match": {
+                                                       "request.payload": "code"
+                                                  }
+                                             }
+                                        ],
+                                        "must_not": {
+                                             "match_phrase": {
+                                                  "request.payload": "Device connect to Mqtt server."
+                                             }
+                                        }
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "cid": "request.payload.cid"
+               },
+               {
+                    "messageType": "context.messageType"
+               },
+               {
+                    "method": "request.payload.method"
+               },
+               {
+                    "开关状态": [
+                         "request.payload.jsonCmd.switch*",
+                         "request.payload.status.switch*"
+                    ]
+               },
+               {
+                    "traceId": "request.payload.traceId"
+               },
+               {
+                    "code": "request.payload.code"
+               },
+               {
+                    "msg": "request.payload.msg"
+               }
+          ],
+          "columnwidths": [
+               262,
+               116,
+               89,
+               62,
+               136,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "CCT_Schedule": {
+          "index": "mqtt-bypassv1",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "match_phrase": {
+                                             "request.payload": "operation"
+                                        }
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "CID": "context.deviceId"
+               },
+               {
+                    "messageType": "context.messageType"
+               },
+               {
+                    "operation": [
+                         "request.payload.info.operation",
+                         "request.payload.jsonCmd.schedule*.operation",
+                         "request.payload.jsonCmd.timer*.operation"
+                    ]
+               },
+               {
+                    "status": [
+                         "request.payload.info.status",
+                         "request.payload.jsonCmd.schedule*.status"
+                    ]
+               },
+               {
+                    "ID": [
+                         "request.payload.info.schID",
+                         "request.payload.info.awayID",
+                         "request.payload.info.timerID"
+                    ]
+               },
+               {
+                    "ScheduleId": {
+                         "mainkey": "request.payload.jsonCmd",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "schedule[0-9]{1,2}"
+                    }
+               },
+               {
+                    "timerId": {
+                         "mainkey": "request.payload.jsonCmd",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "timer[0-9]{1,2}"
+                    }
+               },
+               {
+                    "repeat": [
+                         "request.payload.jsonCmd.schedule*.repeat"
+                    ]
+               },
+               {
+                    "startTs": "request.payload.jsonCmd.schedule*.startTs"
+               },
+               {
+                    "startAct": "request.payload.jsonCmd.schedule*.startAct"
+               },
+               {
+                    "endTs": "request.payload.jsonCmd.schedule*.endTs"
+               },
+               {
+                    "endAct": "request.payload.jsonCmd.schedule*.endAct"
+               },
+               {
+                    "request.payload.jsonCmd.schedule*.light": "request.payload.jsonCmd.schedule*.light"
+               },
+               {
+                    "timer时间": "request.payload.jsonCmd.timer*.second"
+               },
+               {
+                    "traceId": "request.payload.traceId"
+               }
+          ],
+          "columnwidths": [
+               255,
+               110,
+               67,
+               59,
+               36,
+               74,
+               52,
+               53,
+               82,
+               58,
+               87,
+               65,
+               210,
+               67,
+               138,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     },
+     "mqtt_vdmp_schedule": {
+          "index": "mqtt-vdmp",
+          "body": {
+               "query": {
+                    "bool": {
+                         "must": [
+                              {
+                                   "bool": {
+                                        "must": [
+                                             {
+                                             "match_phrase": {
+                                                  "request.payload": {
+                                                       "query": "operation"
+                                                       }
+                                                  }
+                                             },
+                                             {
+                                             "match": {
+                                                  "context.messageType": {
+                                                       "query": "receiveMessage sendMessage"
+                                                       }
+                                                  }
+                                             }
+                                        ],
+                                        "must_not": {
+                                             "match_phrase": {
+                                                  "request.payload": {
+                                                       "query": "timer"
+                                                  }
+                                             }
+                                        }
+                                   }
+                              }
+                         ]
+                    }
+               },
+               "size": 500,
+               "from": 0,
+               "sort": {
+                    "@timestamp": {
+                         "order": "desc"
+                    }
+               }
+          },
+          "globalvars": [],
+          "querylist": [
+               {
+                    "CID": "context.deviceId"
+               },
+               {
+                    "operation": [
+                         "request.payload.state.reported.schedule*.operation",
+                         "request.payload.state.schedule*.operation",
+                         "request.payload.payload.state.schedule*.operation",
+                         "request.payload.payload.state.airschedule*.operation",
+                         "request.payload.state.airschedule*.operation",
+                         "request.payload.state.reported.dimmerSch*.operation",
+                         "request.payload.state.dimmerSch*.operation",
+                         "request.payload.state.reported.schedule.schedule*.operation"
+
+                    ]
+               },
+               {
+                    "context.messageType": "context.messageType"
+               },
+               {
+                    "schedulenum": {
+                         "mainkey": "request.payload",
+                         "transformtidict": false,
+                         "useregex": true,
+                         "regex": "(re.compile(\"schedule\\d{1,2}\"),re.compile(\"airschedule\\d{1,2}\"),re.compile(\"dimmerSch\\d{1,2}\"))"
+                    }
+               },
+               {
+                    "status": [
+                         "request.payload.payload.state.schedule*.status",
+                         "request.payload.state.schedule*.status",
+                         "request.payload.payload.state.airschedule*.status",
+                         "request.payload.state.airschedule*.status",
+                         "request.payload.state.reported.dimmerSch*.status",
+                         "request.payload.state.dimmerSch*.status",
+                         "request.payload.state.reported.schedule.schedule*.status",
+                         "request.payload.state.reported.schedule*.status"
+                    ]
+               },
+               {
+                    "repeat": [
+                         "request.payload.payload.state.schedule*.repeat",
+                         "request.payload.state.schedule*.repeat",
+                         "request.payload.payload.state.airschedule*.repeat",
+                         "request.payload.state.airschedule*.repeat",
+                         "request.payload.state.reported.dimmerSch*.repeat",
+                         "request.payload.state.dimmerSch*.repeat",
+                         "request.payload.state.reported.schedule.schedule*.repeat",
+                         "request.payload.state.reported.schedule*.repeat"
+                    ]
+               },
+               {
+                    "event": [
+                         "request.payload.state.schedule*.event",
+                         "request.payload.state.reported.schedule*.event"
+                    ]
+               },
+               {
+                    "conter": "request.payload.state.reported.schedule*.conter"
+               },
+               {
+                    "startTs": [
+                         "request.payload.payload.state.schedule*.startTs",
+                         "request.payload.state.schedule*.startTs",
+                         "request.payload.payload.state.airschedule*.startTs",
+                         "request.payload.state.airschedule*.startTs",
+                         "request.payload.state.reported.dimmerSch*.startTs",
+                         "request.payload.state.dimmerSch*.startTs",
+                         "request.payload.state.reported.schedule.schedule*.startTs",
+                         "request.payload.state.reported.schedule*.startTs"
+                    ]
+               },
+               {
+                    "startAct": [
+                         "request.payload.payload.state.schedule*.startAct",
+                         "request.payload.state.schedule*.startAct",
+                         "request.payload.payload.state.airschedule*.startAct",
+                         "request.payload.state.airschedule*.startAct",
+                         "request.payload.state.reported.dimmerSch*.startAct",
+                         "request.payload.state.dimmerSch*.startAct",
+                         "request.payload.state.reported.schedule.schedule*.startAct",
+                         "request.payload.state.reported.schedule*.startAct"
+                    ]
+               },
+               {
+                    "endTs": [
+                         "request.payload.payload.state.schedule*.endTs",
+                         "request.payload.state.schedule*.endTs",
+                         "request.payload.payload.state.airschedule*.endTs",
+                         "request.payload.state.airschedule*.endTs",
+                         "request.payload.state.reported.dimmerSch*.endTs",
+                         "request.payload.state.dimmerSch*.endTs",
+                         "request.payload.state.reported.schedule.schedule*.endTs",
+                         "request.payload.state.reported.schedule*.endTs"
+                    ]
+               },
+               {
+                    "endAct": [
+                         "request.payload.payload.state.schedule*.endAct",
+                         "request.payload.state.schedule*.endAct",
+                         "request.payload.payload.state.airschedule*.endAct",
+                         "request.payload.state.airschedule*.endAct",
+                         "request.payload.state.reported.dimmerSch*.endAct",
+                         "request.payload.state.dimmerSch*.endAct",
+                         "request.payload.state.reported.schedule.schedule*.endAct",
+                         "request.payload.state.reported.schedule*.endAct"
+                    ]
+               },
+               {
+                    "screen": [
+                         "request.payload.state.reported.airschedule*.screen",
+                         "request.payload.state.airschedule*.screen"
+                    ]
+               }
+               ,
+               {
+                    "mode":[
+                         "request.payload.state.reported.airschedule*.mode",
+                         "request.payload.state.airschedule*.mode"
+                    ]
+               },
+               {
+                    "modeV2": [
+                         "request.payload.state.reported.airschedule*.modeV2",
+                         "request.payload.state.airschedule*.modeV2"
+                    ]
+               },
+               {
+                    "brightness": [
+                         "request.payload.state.reported.dimmerSch*.brightness",
+                         "request.payload.state.dimmerSch*.brightness"
+                    ]
+               },
+               {
+                    "level": [
+                         "request.payload.state.reported.schedule*.level",
+                         "request.payload.state.schedule*.level"
+                    ]
+               }
+          ],
+          "columnwidths": [
+               259,
+               100,
+               142,
+               100,
+               100,
+               100,
+               95,
+               100,
+               100,
+               121,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100,
+               100
+          ]
+     }
+}
